@@ -47,7 +47,9 @@ button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px
   background: #fff; border: 1px solid var(--line); border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0,0,0,.06);
 }
-.ad-shirt { position: absolute; left: 300px; top: 30px; width: 300px; height: 300px; }
+.ad-shirt { position: absolute; left: 290px; top: 28px; width: 320px; height: 320px; }
+.ad-shirt img, .choice img { display: block; user-select: none; }
+.choice img { margin: 0 auto; }
 .ad-slogan {
   position: absolute; left: 0; right: 0; top: 380px; text-align: center;
   font-size: 30px; font-weight: 600; letter-spacing: .1px; white-space: nowrap;

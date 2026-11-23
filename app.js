@@ -70,24 +70,11 @@
   function setProgress(t) { progressEl.textContent = t || ""; }
 
   function shirtSVG(colorKey, size) {
-    const hex = C.COLORS[colorKey].hex, id = "g" + Math.random().toString(36).slice(2, 8);
-    return `<svg viewBox="0 0 400 400" width="${size || 300}" height="${size || 300}" role="img" aria-label="${C.COLORS[colorKey].label} t-shirt">
-      <defs>
-        <linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#fff" stop-opacity=".10"/>
-          <stop offset=".55" stop-color="#000" stop-opacity="0"/>
-          <stop offset="1" stop-color="#000" stop-opacity=".14"/>
-        </linearGradient>
-      </defs>
-      <path d="M150 38 Q200 78 250 38 L318 60 L382 122 L338 170 L304 146 L304 368 Q200 378 96 368 L96 146 L62 170 L18 122 L82 60 Z" fill="${hex}"/>
-      <path d="M150 38 Q200 78 250 38 L318 60 L382 122 L338 170 L304 146 L304 368 Q200 378 96 368 L96 146 L62 170 L18 122 L82 60 Z" fill="url(#${id})"/>
-      <path d="M150 38 Q200 80 250 38 L240 34 Q200 66 160 34 Z" fill="#f2f2f2"/>
-      <rect x="192" y="56" width="16" height="10" rx="1.5" fill="#fafafa" opacity=".9"/>
-      <path d="M96 146 Q100 200 98 250" stroke="#000" stroke-opacity=".07" stroke-width="3" fill="none"/>
-      <path d="M304 146 Q300 210 302 260" stroke="#000" stroke-opacity=".07" stroke-width="3" fill="none"/>
-      <path d="M170 120 Q200 135 235 118" stroke="#000" stroke-opacity=".05" stroke-width="4" fill="none"/>
-    </svg>`;
+    const s = size || 320;
+    return `<img src="${C.COLORS[colorKey].img}" width="${s}" height="${s}" alt="${C.COLORS[colorKey].label} t-shirt" draggable="false">`;
   }
+  // Preload all three photos so image loading never eats into dwell time
+  const preloaded = Object.values(C.COLORS).map((c) => { const im = new Image(); im.src = c.img; return im.decode ? im.decode().catch(() => {}) : Promise.resolve(); });
 
   function adStage(sid, labelText) {
     return `<div class="ad-stage" id="stage">
@@ -204,8 +191,10 @@
       ${S.eyeTracker ? `<p class="muted">Please keep your head still and stay facing the screen while you view the advertisements.</p>` : ""}
       <div class="actions"><span class="spacer"></span><button class="primary" id="go">Show the first advertisement</button></div>
     </div>`);
-    $("#go").addEventListener("click", () => {
+    $("#go").addEventListener("click", async () => {
       if (document.documentElement.requestFullscreen && S.eyeTracker) document.documentElement.requestFullscreen().catch(() => {});
+      $("#go").disabled = true;
+      await Promise.all(preloaded);
       log("instructions", "leave"); screenAd(0);
     });
   }

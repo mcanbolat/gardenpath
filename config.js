@@ -12,10 +12,12 @@ window.GP_CONFIG = {
     CB: "Classic clothing from cotton sourced in Mississippi."
   },
 
+  // One photograph recolored in CIELAB: identical lightness (L* = 53) and chroma (C* = 46.5);
+  // only hue differs (30°, 287°, 142°). Hex values are the mean shirt color. See assets/colors.json.
   COLORS: {
-    red:   { hex: "#D63A2C", label: "Red" },
-    blue:  { hex: "#2547BF", label: "Blue" },
-    green: { hex: "#2F6B43", label: "Green" }
+    red:   { hex: "#C66059", label: "Red",   img: "assets/shirt_red.jpg" },
+    blue:  { hex: "#627BCB", label: "Blue",  img: "assets/shirt_blue.jpg" },
+    green: { hex: "#478D4B", label: "Green", img: "assets/shirt_green.jpg" }
   },
 
   MIN_VIEW_MS: 1000,   // an ad counts as "seen" after 1 s on its page

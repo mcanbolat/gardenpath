@@ -22,9 +22,9 @@ Data go to the Supabase project `newsvendor-game` in tables prefixed `gp_`.
   - **GP**: The cotton clothing is made of grows in Mississippi.
   - **CA**: Clothing crafted from soft Mississippi-grown cotton.
   - **CB**: Classic clothing from cotton sourced in Mississippi.
-- Colors: red `#D63A2C`, blue `#2547BF`, green `#2F6B43`.
+- Colors: one photograph (Gemini-generated, light heather gray) recolored with `tools/recolor.py` in CIELAB. All three have L* = 53 and C* = 46.5; only hue differs: red 30° (`#C66059`), blue 287° (`#627BCB`), green 142° (`#478D4B`). Images are in `assets/`, with measured values in `assets/colors.json`.
 - 36 layouts: 6 slogan-to-color assignments × 6 page orders. `gp_start_session` assigns the least-used layout. It counts completed sessions plus sessions started in the last hour, and ignores test sessions.
-- Ads are drawn in a fixed 900×520 px area: shirt 300×300 px, slogan centered below it. On each ad page entry, the app logs the AOI pixel rectangles.
+- Ads are drawn in a fixed 900×520 px area: shirt photo 320×320 px, slogan centered below it. On each ad page entry, the app logs the AOI pixel rectangles.
 
 ## Data
 
