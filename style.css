@@ -1,0 +1,82 @@
+:root {
+  --ink: #1d1d1f;
+  --muted: #6b6b70;
+  --line: #dcdce0;
+  --bg: #f4f4f2;
+  --card: #ffffff;
+  --accent: #1f4e8c;
+  --accent-ink: #ffffff;
+  --font: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); }
+body { min-height: 100vh; }
+
+#topbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 28px; font-size: 13px; color: var(--muted);
+  border-bottom: 1px solid var(--line); background: #fbfbfa;
+}
+#app { max-width: 1040px; margin: 0 auto; padding: 32px 24px 64px; }
+
+h1 { font-size: 26px; margin: 0 0 16px; font-weight: 600; }
+h2 { font-size: 19px; margin: 28px 0 10px; font-weight: 600; }
+p, li { font-size: 16px; line-height: 1.55; }
+.muted { color: var(--muted); }
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 28px 32px; }
+
+button {
+  font: inherit; font-size: 15px; padding: 10px 20px; border-radius: 8px;
+  border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer;
+}
+button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+button:disabled { opacity: .4; cursor: not-allowed; }
+button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid #8fb3e6; outline-offset: 2px; }
+.actions { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; gap: 12px; }
+.actions .spacer { flex: 1; }
+
+/* ---------- advertisement pages ---------- */
+.ad-nav { display: flex; justify-content: center; gap: 8px; margin-bottom: 18px; }
+.ad-tab { min-width: 96px; }
+.ad-tab.current { border-color: var(--ink); font-weight: 600; }
+.ad-tab .seen { color: #2e7d32; margin-left: 4px; }
+
+/* Fixed-size stimulus so AOIs are identical for every ad and every participant */
+.ad-stage {
+  width: 900px; height: 520px; margin: 0 auto; position: relative;
+  background: #fff; border: 1px solid var(--line); border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+}
+.ad-shirt { position: absolute; left: 300px; top: 30px; width: 300px; height: 300px; }
+.ad-slogan {
+  position: absolute; left: 0; right: 0; top: 380px; text-align: center;
+  font-size: 30px; font-weight: 600; letter-spacing: .1px; white-space: nowrap;
+  font-family: var(--font); color: #111;
+}
+.ad-label { position: absolute; left: 16px; top: 12px; font-size: 13px; color: var(--muted); }
+
+.small-stage { transform: scale(.55); transform-origin: top center; height: 290px; width: 900px; margin: 0 auto; }
+
+/* ---------- choice page ---------- */
+.choices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 18px; }
+.choice {
+  background: #fff; border: 2px solid var(--line); border-radius: 10px; padding: 16px;
+  text-align: center; cursor: pointer;
+}
+.choice svg { width: 160px; height: 160px; }
+.choice.selected { border-color: var(--accent); box-shadow: 0 0 0 3px #c9daf3; }
+.choice .name { font-weight: 600; margin-top: 6px; }
+
+/* ---------- questionnaires ---------- */
+.q { margin: 20px 0; }
+.q .prompt { font-weight: 600; margin-bottom: 8px; }
+.scale { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.scale label { display: flex; flex-direction: column; align-items: center; font-size: 13px; min-width: 36px; cursor: pointer; }
+.scale .anchor { font-size: 12px; color: var(--muted); max-width: 90px; }
+.opts label { display: block; margin: 4px 0; cursor: pointer; }
+textarea { width: 100%; min-height: 120px; font: inherit; font-size: 15px; padding: 10px; border-radius: 8px; border: 1px solid var(--line); }
+input[type=text], input[type=number] { font: inherit; font-size: 15px; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--line); }
+.rating-block { border-top: 1px solid var(--line); padding-top: 18px; margin-top: 18px; }
+.error { color: #b3261e; font-size: 14px; }
+.code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 22px; padding: 8px 14px; background: #eef2f8; border-radius: 6px; display: inline-block; }
+.blocker { text-align: center; padding: 60px 20px; }
