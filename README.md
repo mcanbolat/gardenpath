@@ -11,7 +11,7 @@ Data go to the Supabase project `newsvendor-game` in tables prefixed `gp_`.
 | Purpose | URL |
 |---|---|
 | Online / subject pool | `https://mcanbolat.github.io/gardenpath/?pid=PARTICIPANT_ID` |
-| Lab with eye tracker (full screen, flagged `eye_tracker`) | `https://mcanbolat.github.io/gardenpath/?pid=ID&et=1&station=LAB1` |
+| Supervised lab/classroom session (full screen, flagged in `eye_tracker` column) | `https://mcanbolat.github.io/gardenpath/?pid=ID&lab=1&station=LAB1` |
 | Testing (excluded from counterbalancing and analysis) | `https://mcanbolat.github.io/gardenpath/?test=1` |
 
 `PROLIFIC_PID` and `id` are also accepted in place of `pid`. Without an ID in the link, the consent page asks for one.
@@ -32,7 +32,7 @@ Data go to the Supabase project `newsvendor-game` in tables prefixed `gp_`.
 |---|---|---|
 | `gp_sessions` | participant | `layout_id`, `color_map`, `page_order`, choice, `recall_text`, `answers` (JSON: comprehension, seen_before, demographics) |
 | `gp_ad_measures` | participant × ad | `dwell_ms`, `visits`, `first_visit_ms`, `text_hover_ms`, `rating_effective` (1–10), `rating_clarity` (1–7), `error_judgment`, `color_liking` (1–7) |
-| `gp_events` | logged event | `client_epoch_ms` (Unix ms, for syncing with the eye tracker), `perf_ms`, page, event, detail |
+| `gp_events` | logged event | `client_epoch_ms` (Unix ms timestamps), `perf_ms`, page, event, detail |
 | `gp_analysis` (view) | participant × ad | completed, non-test sessions, ready for analysis |
 
 Dwell time counts only the time the ad page is on screen *and* the window is visible and focused.

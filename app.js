@@ -15,7 +15,7 @@
     pageOrder: null,     // ["CB","GP","CA"]  -> ad pages 1..3
     participantId: params.get("pid") || params.get("PROLIFIC_PID") || params.get("id") || "",
     station: params.get("station") || "",
-    eyeTracker: params.get("et") === "1",
+    eyeTracker: params.get("et") === "1" || params.get("lab") === "1",   // supervised session: full screen
     isTest: params.get("test") === "1",
     ads: {},             // per sentence: dwell, visits, firstVisit, hover
     choice: null,
@@ -137,7 +137,7 @@
     h(`<div class="panel">
       <h1>Consent to participate</h1>
       <p>You are invited to take part in a research study on how people read and evaluate advertisements, conducted by Dr. Mustafa Canbolat, SUNY Brockport.</p>
-      <p>You will look at three short advertisements, choose the one you find most effective, and answer some questions. It takes about 10 minutes. ${S.eyeTracker ? "In this lab session your eye movements are recorded by the eye tracker." : ""} There are no known risks beyond those of everyday computer use. Participation is voluntary, and you may stop at any time without penalty. Your responses are stored without your name.</p>
+      <p>You will look at three short advertisements, choose the one you find most effective, and answer some questions. It takes about 10 minutes. There are no known risks beyond those of everyday computer use. Participation is voluntary, and you may stop at any time without penalty. Your responses are stored without your name.</p>
       <p class="muted">[IRB approval number and contact information to be inserted here.]</p>
       ${S.participantId ? "" : `<div class="q"><div class="prompt">Participant ID (from the researcher or SONA)</div><input type="text" id="pid" maxlength="60" autocomplete="off"></div>`}
       <label><input type="checkbox" id="agree"> I am 18 or older, I have read the information above, and I agree to participate.</label>
@@ -188,7 +188,7 @@
         <li>Look at each advertisement as you normally would. There is no time limit.</li>
         <li>When you are ready, continue to the choice page and pick one. You can still return to the ads from there before you confirm.</li>
       </ul>
-      ${S.eyeTracker ? `<p class="muted">Please keep your head still and stay facing the screen while you view the advertisements.</p>` : ""}
+      
       <div class="actions"><span class="spacer"></span><button class="primary" id="go">Show the first advertisement</button></div>
     </div>`);
     $("#go").addEventListener("click", async () => {
